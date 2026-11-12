@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Founder — Revival Revolutions</title>
+  <meta name="description" content="Alvaro Hachuel: from the Formula 4 pit lane at Teo Martín Motorsport to Porsche Cup Suisse to founding New York City's first collegiate race team.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #111112;
+      --text: #eceae6;
+      --text-muted: #a9a59d;
+      --text-faint: #6b6861;
+      --line: rgba(236, 234, 230, 0.14);
+      --font-head: "Archivo", "Helvetica Neue", sans-serif;
+      --font-body: "Inter", "Helvetica Neue", sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; }
+
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 32px;
+      background: linear-gradient(rgba(17, 17, 18, 0.75), transparent);
+    }
+    .brand {
+      font-family: var(--font-head); font-weight: 500;
+      font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase;
+      text-decoration: none;
+    }
+    .nav-links a {
+      text-decoration: none; color: var(--text-muted);
+      font-size: 0.68rem; font-weight: 400; letter-spacing: 0.24em; text-transform: uppercase;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .hero { position: relative; height: 100vh; min-height: 560px; }
+    .hero img { position: absolute; inset: 0; filter: brightness(0.62); }
+    .hero .inner {
+      position: relative; height: 100%;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 10vh 24px 0;
+    }
+    .hero h1 {
+      font-family: var(--font-head); font-weight: 500; text-transform: uppercase;
+      font-size: clamp(2.2rem, 6vw, 4.2rem); line-height: 1.12; letter-spacing: 0.14em;
+    }
+    .hero .sub {
+      margin-top: 28px; max-width: 44ch;
+      color: var(--text-muted); font-size: 0.95rem; line-height: 1.9;
+    }
+    .hero .scroll-cue {
+      position: absolute; bottom: 6vh; left: 50%; transform: translateX(-50%);
+      color: var(--text-faint);
+      font-size: 0.62rem; letter-spacing: 0.4em; text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .chapter { padding: 110px 0 0; }
+    .chapter .intro {
+      max-width: 620px; margin: 0 auto; text-align: center; padding: 0 28px 64px;
+    }
+    .chapter h2 {
+      font-family: var(--font-head); font-weight: 500; text-transform: uppercase;
+      font-size: clamp(1.5rem, 3.4vw, 2.2rem); line-height: 1.2; letter-spacing: 0.12em;
+    }
+    .chapter .intro p {
+      margin-top: 22px; color: var(--text-muted); font-size: 0.98rem;
+    }
+
+    .chapter h2 a { text-decoration: none; transition: color 0.25s; }
+    .chapter h2 a:hover { color: var(--text-muted); }
+
+    /* ───── Gallery ───── */
+    .gallery { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+    .gallery .stage {
+      position: relative; aspect-ratio: 16 / 9; overflow: hidden; cursor: zoom-in;
+      background: #0c0c0d;
+    }
+    .gallery .stage img { transition: opacity 0.35s ease; }
+    .gallery .stage .cap {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 14px 20px; font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: rgba(236, 234, 230, 0.75);
+      background: linear-gradient(transparent, rgba(17, 17, 18, 0.7));
+      pointer-events: none;
+    }
+    .stage .nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 42px; height: 42px; border-radius: 50%;
+      background: rgba(17, 17, 18, 0.55); color: var(--text);
+      border: 1px solid rgba(236, 234, 230, 0.25); cursor: pointer;
+      font-size: 1rem; line-height: 1;
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .stage .nav:hover { background: rgba(17, 17, 18, 0.85); border-color: var(--text-muted); }
+    .stage .nav.prev { left: 16px; }
+    .stage .nav.next { right: 16px; }
+
+    .thumbs { display: flex; gap: 10px; margin-top: 10px; }
+    .thumbs button {
+      flex: 1; aspect-ratio: 16 / 9; padding: 0; overflow: hidden;
+      background: none; border: 1px solid transparent; cursor: pointer;
+      opacity: 0.55; transition: opacity 0.25s, border-color 0.25s;
+    }
+    .thumbs button:hover { opacity: 0.85; }
+    .thumbs button.active { opacity: 1; border-color: var(--text-muted); }
+
+    /* ───── Lightbox ───── */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 50;
+      background: rgba(10, 10, 11, 0.95);
+      display: none; align-items: center; justify-content: center;
+      cursor: zoom-out;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 92vw; max-height: 88vh; width: auto; height: auto; object-fit: contain;
+    }
+    .lightbox .close {
+      position: absolute; top: 20px; right: 28px;
+      background: none; border: none; color: var(--text-muted);
+      font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+      cursor: pointer;
+    }
+    .lightbox .close:hover { color: var(--text); }
+
+    .next-cta { border-top: 1px solid var(--line); }
+    .next-cta .intro { padding-bottom: 0; }
+    .next-cta h2 a { text-decoration: none; transition: color 0.25s; }
+    .next-cta h2 a:hover { color: var(--text-muted); }
+
+    footer { padding: 110px 28px 64px; text-align: center; }
+    footer .brand { font-size: 0.78rem; }
+    footer p {
+      margin-top: 16px; color: var(--text-faint);
+      font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase;
+    }
+
+    @media (max-width: 720px) {
+      header { padding: 16px 20px; }
+      .chapter { padding-top: 80px; }
+      .gallery { padding: 0 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="brand" href="index.html">Revival Revolutions</a>
+    <nav class="nav-links">
+      <a href="index.html">The Cars &rarr;</a>
+    </nav>
+  </header>
+
+  <!-- ───── Hero ───── -->
+  <section class="hero">
+    <img src="assets/founder_hero.jpg" alt="">
+    <div class="inner">
+      <h1>Alvaro Hachuel</h1>
+    </div>
+    <a class="scroll-cue" href="#racing">Scroll</a>
+  </section>
+
+  <!-- ───── Porsche Cup Suisse ───── -->
+  <section class="chapter" id="racing">
+    <div class="intro">
+      <h2>Porsche Cup Suisse</h2>
+      <p>Alvaro raced in Porsche Cup Suisse in 2023 and 2024. It confirmed that racing is where his passion lies, and showed him the canyon between road cars and race cars: they may look alike, but the experience is completely different.</p>
+    </div>
+    <div class="gallery" data-gallery="racing"></div>
+  </section>
+
+  <!-- ───── Royal Restauración ───── -->
+  <section class="chapter" id="restomod">
+    <div class="intro">
+      <h2>Royal Restauraci&oacute;n</h2>
+      <p>His first business: bespoke restoration using race-style fabrication, CAD design and 3D printing to bring old gems back to life, or to turn them into the vision of their owners.</p>
+    </div>
+    <div class="gallery" data-gallery="resto"></div>
+  </section>
+
+  <!-- ───── RMR ───── -->
+  <section class="chapter" id="rmr">
+    <div class="intro">
+      <h2><a href="https://rammotorsportracing.com" target="_blank" rel="noopener">Ram Motorsport Racing &nearr;</a></h2>
+      <p>After Porsche, Alvaro built his own team from the ground up: RMR, the first collegiate racing team in New York City, racing Mazda MX-5s. Race wins in its debut season, the championship lead, and two BMW E36 builds now underway.</p>
+    </div>
+    <div class="gallery" data-gallery="rmr"></div>
+  </section>
+
+  <!-- ───── Back to the cars ───── -->
+  <section class="chapter next-cta">
+    <div class="intro">
+      <h2><a href="index.html">The Cars &rarr;</a></h2>
+    </div>
+  </section>
+
+  <footer>
+    <a class="brand" href="index.html">Revival Revolutions</a>
+    <p>&copy; 2026 Alvaro Hachuel &middot; Hero: 1984 RAC Rally, photo Clive Horsman, CC BY 2.0</p>
+  </footer>
+
+  <!-- ───── Lightbox ───── -->
+  <div class="lightbox" id="lightbox">
+    <button class="close" id="lb-close">Close</button>
+    <img id="lb-img" src="" alt="">
+  </div>
+
+  <script>
+    const GALLERIES = {
+      racing: [
+        { src: "assets/porsche_racing.jpg", cap: "On track" },
+        { src: "assets/porsche_suit.jpg", cap: "Alvaro, race day" },
+        { src: "assets/porsche_garage.jpg", cap: "In the garage" }
+      ],
+      resto: [
+        { src: "assets/resto_911_side.jpg", cap: "Porsche 911, the finished build" },
+        { src: "assets/resto_911_rear.jpg", cap: "Back on the road" },
+        { src: "assets/resto_348_render.jpg", cap: "Ferrari 348, design render" }
+      ],
+      rmr: [
+        { src: "assets/mazda_mx5_cup.jpg", cap: "Mazda MX-5 Cup · Photo: Robert Yorde, CC BY 2.0" },
+        { src: "assets/rmr_driver.jpg", cap: "Race day" },
+        { src: "assets/rmr_e36_a.webp", cap: "The team's E36 M3 Evo · Photo: Amspeed Racing" },
+        { src: "assets/rmr_e36_b.webp", cap: "377 hp, 1050 kg · Photo: Amspeed Racing" }
+      ]
+    };
+
+    // Lightbox
+    const lightbox = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lb-img");
+    const openLb = src => { lbImg.src = src; lightbox.classList.add("open"); };
+    const closeLb = () => { lightbox.classList.remove("open"); lbImg.src = ""; };
+    lightbox.addEventListener("click", closeLb);
+    document.getElementById("lb-close").addEventListener("click", closeLb);
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeLb(); });
+
+    document.querySelectorAll(".gallery[data-gallery]").forEach(g => {
+      const shots = GALLERIES[g.dataset.gallery];
+      let idx = 0;
+
+      g.innerHTML =
+        '<div class="stage">' +
+          '<img src="' + shots[0].src + '" alt="">' +
+          '<button class="nav prev" aria-label="Previous image">&larr;</button>' +
+          '<button class="nav next" aria-label="Next image">&rarr;</button>' +
+          '<p class="cap">' + shots[0].cap + '</p>' +
+        '</div>' +
+        '<div class="thumbs"></div>';
+
+      const img = g.querySelector(".stage img");
+      const cap = g.querySelector(".cap");
+      const thumbs = g.querySelector(".thumbs");
+
+      const show = i => {
+        idx = (i + shots.length) % shots.length;
+        img.style.opacity = 0;
+        setTimeout(() => {
+          img.src = shots[idx].src;
+          cap.innerHTML = shots[idx].cap;
+          img.style.opacity = 1;
+        }, 160);
+        thumbs.querySelectorAll("button").forEach((b, j) => b.classList.toggle("active", j === idx));
+      };
+
+      shots.forEach((s, i) => {
+        const b = document.createElement("button");
+        b.innerHTML = '<img src="' + s.src + '" alt="" loading="lazy">';
+        if (i === 0) b.classList.add("active");
+        b.addEventListener("click", () => show(i));
+        thumbs.appendChild(b);
+      });
+
+      g.querySelector(".prev").addEventListener("click", e => { e.stopPropagation(); show(idx - 1); });
+      g.querySelector(".next").addEventListener("click", e => { e.stopPropagation(); show(idx + 1); });
+      img.addEventListener("click", () => openLb(img.src));
+    });
+  </script>
+
+</body>
+</html>
